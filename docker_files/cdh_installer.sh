@@ -8,7 +8,7 @@ fi
 
 DEBIAN_FRONTEND=noninteractive apt-get update
 
-DEBIAN_FRONTEND=noninteractive apt-get -y install hadoop-conf-pseudo impala impala-server impala-state-store impala-catalog impala-shell
+DEBIAN_FRONTEND=noninteractive apt-get -y install hadoop-conf-pseudo
 
 #CDH5-Installation-Guide Step 1 - Format the NameNode
 echo "Step 1 - Format the NameNode"
@@ -37,15 +37,13 @@ echo "Step 6 - Create User Directories"
 sudo -u hdfs hdfs dfs -mkdir /user/hadoop
 sudo -u hdfs hdfs dfs -chown hadoop /user/hadoop
 hadoop fs -mkdir       /tmp
-sudo -u hive hdfs dfs -mkdir       /user/hive/warehouse
 hadoop fs -chmod g+w   /tmp
-sudo -u hive hdfs dfs -chmod g+w   /user/hive/warehouse
 sudo -u hdfs hdfs dfs -mkdir /hbase
 sudo -u hdfs hdfs dfs -chown hbase /hbase
 
 #CDH5-Installation-Guide Install HBase
 echo "Install Cloudera Components"
-DEBIAN_FRONTEND=noninteractive apt-get -y install hive hbase hbase-thrift hbase-master pig hue oozie oozie-client spark-core spark-master spark-worker spark-history-server spark-python
+DEBIAN_FRONTEND=noninteractive apt-get -y install hbase hbase-thrift hbase-master hue oozie oozie-client
 
 #Configure Oozie
 update-alternatives --set oozie-tomcat-conf /etc/oozie/tomcat-conf.http
